@@ -22,6 +22,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9521f70c-b7b3-41bb-99d1-3948b124eabc"
+      }
+    },
+    "owner": "nassim78",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/9521f70c-b7b3-41bb-99d1-3948b124eabc"
     }
   }
 }
