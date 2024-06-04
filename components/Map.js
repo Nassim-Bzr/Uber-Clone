@@ -14,7 +14,7 @@ const Map = () => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
 
-  const mapRef = React.useRef(null);
+  const mapRef = useRef(null);
 
  useEffect(()=> 
     {
@@ -31,6 +31,19 @@ const Map = () => {
   if (!origin || !origin.location) {
     return null; // or some fallback UI
   }
+
+  useEffect(() => {
+    if (!origin || !destination) return;
+
+    const getTravelTime = async () => {
+      const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAPS_APIKEY}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      dispatch(setTravelTimeInfo(data.rows[0].elements[0]));
+    };
+
+    getTravelTime();
+  }, [origin, destination, GOOGLE_MAPS_APIKEY]);
 
   return (
     <MapView
@@ -86,3 +99,4 @@ const Map = () => {
 export default Map;
 
 const styles = StyleSheet.create({});
+

@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
 import { Provider} from "react-redux"
 import { store } from './store';
 import HomeScreen from "./screens/HomeScreen";
 import { SafeAreaProvider} from "react-native-safe-area-context";
+import { Platform } from 'react-native';
 // import ./screens/MapScreen.js 
 import MapScreen from "./screens/MapScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import keyboard
 
 import 'react-native-gesture-handler';
 
@@ -19,7 +21,12 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
       <SafeAreaProvider>
- 
+
+         <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={{ flex: 1 }}
+
+          >
         <Stack.Navigator>
           <Stack.Screen name="HomeScreen" component={HomeScreen} options={{
             headerShown: false,
@@ -31,7 +38,7 @@ export default function App() {
           }}
           />
         </Stack.Navigator>
-
+        </KeyboardAvoidingView>
     </SafeAreaProvider>
     </NavigationContainer>
     </Provider>
