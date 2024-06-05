@@ -27,7 +27,7 @@ const NavFavourites = () => {
       keyExtractor={(item) => item.id}
       ItemSeparatorComponent={() => (
         <View
-          style={[tw`bg-gray-200`, { height: 0.8 }]}
+          style={[tw`bg-gray-200`, { height: 0 }]}
         />
       )}
       renderItem={({ item }) => (
